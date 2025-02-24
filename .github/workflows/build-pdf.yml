@@ -2,29 +2,36 @@ name: Build TC 9.0 PDFs
 
 on:
   push:
-    branches: [ main ]  # Runs on pushes to main branch
-  pull_request:
-    branches: [ main ]  # Runs on PRs to main
+    branches: [ main ]
 
 jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the repo
+      # Step 1: Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # default token is sufficient for committing back
 
-      # Step 2: Compile LaTeX files to PDFs
+      # Step 2: Compile LaTeX Document
       - name: Compile LaTeX Documents
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: |  # List all .tex files to compile
-            tc9_latest.tex
+          root_file: tc9_latest.tex
 
-      # Step 3: Upload PDFs as artifacts
-      - name: Upload PDFs
-        uses: actions/upload-artifact@v4
-        with:
-          name: TC9-PDFs
-          path: |  # Where the PDFs end up
-            tc9_latest.pdf
+      # Step 3: Create Timestamped PDF folder and Move PDF
+      - name: Timestamp and Move PDF
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%d_%H-%M-%S")
+          mkdir -p pdf
+          cp tc9_latest.pdf pdf/tc9_latest_${TIMESTAMP}.pdf
+
+      # Step 4: Commit and Push PDF to Repository
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add pdf/
+          git commit -m "Add PDF generated on $(date -u +"%Y-%m-%d %H:%M:%S UTC")" || echo "No changes to commit"
+          git push origin main
