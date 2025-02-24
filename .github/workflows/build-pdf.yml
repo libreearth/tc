@@ -19,10 +19,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: |  # List all .tex files to compile
-            tc9_en.tex
-            tc9_es.tex
-            tc9_fr.tex
-            tc9_cn.tex
+            tc9_latest.tex
 
       # Step 3: Upload PDFs as artifacts
       - name: Upload PDFs
@@ -30,7 +27,4 @@ jobs:
         with:
           name: TC9-PDFs
           path: |  # Where the PDFs end up
-            tc9_en.pdf
-            tc9_es.pdf
-            tc9_fr.pdf
-            tc9_cn.pdf
+            tc9_latest.pdf
