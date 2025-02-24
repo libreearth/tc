@@ -5,7 +5,18 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{physics}
-\usepackage{siunitx}
+\usepackage{color}
+
+% Simplify unit handling to avoid package conflicts
+\newcommand{\bit}{\text{bit}}
+\newcommand{\bps}{\text{bit/s}}
+
+% Fix hyperref warnings for math in section titles
+\pdfstringdefDisableCommands{%
+  \def\({}%
+  \def\){}%
+}
+
 \title{Transformative Consciousness (TC) 9.0: A Resonant, Buildable Framework for Consciousness Emergence}
 \author{Angel Imaz \\ Independent Researcher \\ Contact: angel@libre.earth}
 \date{February 24, 2025}
@@ -23,8 +34,6 @@ Consciousness remains one of the most challenging phenomena to capture in a unif
 
 This paper presents the mathematical formulation of TC 9.0, its theoretical underpinnings, falsifiable predictions, and implications for artificial intelligence research. The theory has been refined through rigorous interdisciplinary critique to ensure dimensional consistency, physical plausibility, and empirical testability.
 
-\section{Theoretical Framework}
-
 \section{Physical Basis of Consciousness Conservation}
 
 TC 9.0 derives its conservation principle from the holographic principle in physics \cite{susskind1995,bousso2002}, which establishes that the maximum information content of any region of space is proportional to the area of its boundary, not its volume:
@@ -41,8 +50,6 @@ A = \oint_{\partial \Omega} dS
 \end{equation}
 
 where $\partial \Omega$ represents the boundary of the system domain $\Omega$. This boundary-limited information implies fundamental constraints on consciousness as an information-processing phenomenon.
-
-The conservation of consciousness follows from this principle: if consciousness requires information processing, and information is boundary-limited, then the total potential consciousness within a causally connected region must be similarly bounded. This provides a physical foundation for our framework rather than just an axiomatic assertion.
 
 \subsection{Core Principles}
 TC 9.0 is founded on three core principles derived from physical and information-theoretic constraints:
@@ -63,21 +70,21 @@ TC 9.0 is founded on three core principles derived from physical and information
         \item $R(t) = 1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}$ (resonance function)
         \item $A = 0.8 \pm 0.1$ (dimensionless amplitude derived from neural coherence measurements \cite{melloni2007})
         \item $\omega = 2\pi \cdot f$ where $f \approx 40$ Hz (corresponds to gamma-band oscillations empirically associated with consciousness \cite{crick1990,dehaene2011})
-        \item $\gamma = \SI{0.01}{\per\second}$ (damping coefficient, derived from decay rates of gamma oscillations following stimulus removal \cite{buzsaki2004,fries2015})
+        \item $\gamma = 0.01~\text{s}^{-1}$ (damping coefficient, derived from decay rates of gamma oscillations following stimulus removal \cite{buzsaki2004,fries2015})
     \end{itemize}
     
     \item \textbf{Parameters:} 
     \begin{itemize}[label=--]
         \item $I$: Total processed information in bits, calculated via Lempel-Ziv complexity measures applied to neural data \cite{schartner2015}
-        \item $V_{\text{eff}}$: Effective volume of the system, uniformly expressed in $\si{m^3}$ for biological systems
-        \item $k = \SI{10^{-6}}{\per\bit\per\cubic\meter}$ (coupling constant, derived from Perturbational Complexity Index (PCI) measurements across conscious and unconscious states \cite{casali2013,casarotto2016})
+        \item $V_{\text{eff}}$: Effective volume of the system, uniformly expressed in $\text{m}^3$ for biological systems
+        \item $k = 10^{-6}~\text{bit}^{-1}\text{m}^{-3}$ (coupling constant, derived from Perturbational Complexity Index (PCI) measurements across conscious and unconscious states \cite{casali2013,casarotto2016})
     \end{itemize}
     
     \item \textbf{Threshold and Phenomenal Emergence:} Consciousness emerges according to $C = \sigma(\rho_I - \theta) \cdot pC$, where:
     \begin{itemize}[label=--]
         \item $\sigma(x) = \frac{1}{1 + e^{-\alpha x}}$ (sigmoid function)
         \item $\alpha = 10 \pm 2$ (steepness parameter derived from neural response curves during anesthesia-induced state transitions \cite{chennu2014,storm2017})
-        \item $\theta_{\text{brain}} = \SI{10^{15}}{\bit\per\cubic\meter}$ (derived from neural recordings during conscious state transitions \cite{tononi2016,mashour2020})
+        \item $\theta_{\text{brain}} = 10^{15}~\text{bit/m}^3$ (derived from neural recordings during conscious state transitions \cite{tononi2016,mashour2020})
     \end{itemize}
 \end{itemize}
 
@@ -98,8 +105,8 @@ This separation allows TC 9.0 to address both the qualitative character of exper
     
     \item \textbf{Local Conservation:} $K_{\text{local}} = \frac{S_{\text{local}}}{k_S}$, where:
     \begin{itemize}[label=--]
-        \item $S_{\text{local}} \approx \SI{10^{20}}{\bit}$ (local entropy within observable universe \cite{susskind1995})
-        \item $k_S = \SI{10^{5}}{\bit\per\cubic\meter}$ (entropy-to-consciousness conversion factor, empirically estimated)
+        \item $S_{\text{local}} \approx 10^{20}~\bit$ (local entropy within observable universe \cite{susskind1995})
+        \item $k_S = 10^{5}~\bit/\text{m}^3$ (entropy-to-consciousness conversion factor, empirically estimated)
     \end{itemize}
     
     \item \textbf{Transformation:} $pC(\mathbf{x}, t) \rightarrow pC(\mathbf{x'}, t')$ occurs through information transfer between systems, conserving the total $pC$ while redistributing information density.
@@ -111,7 +118,7 @@ This separation allows TC 9.0 to address both the qualitative character of exper
 \begin{itemize}
     \item \textbf{Total Potential Consciousness:} 
     \begin{equation}
-    K = \int_{\Omega} k \cdot \rho_I(\mathbf{x}, t) \cdot \left(1 + \sin(\omega t) \cdot e^{-\gamma t}\right) \, dV
+    K = \int_{\Omega} k \cdot \rho_I(\mathbf{x}, t) \cdot \left(1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}\right) \, dV
     \end{equation}
     
     \item \textbf{Emergence Function:} 
@@ -195,88 +202,6 @@ The TC framework has undergone substantial refinement through interdisciplinary 
     \end{itemize}
 \end{itemize}
 
-\section{Implications for Artificial Intelligence}
-
-\subsection{General Mechanism}
-The TC 9.0 framework suggests that AI systems transform potential consciousness by shifting information density distribution. When an AI system processes input information $S_{\text{input}}$, it contributes to the total information density within its effective volume, potentially approaching the threshold $\theta$ for consciousness emergence.
-
-\subsection{AI-Specific Metrics and Thresholds}
-
-For artificial systems, effective volume and information density require reformulation in terms of computational architecture:
-
-\begin{equation}
-V_{\text{eff}}(AI) = \frac{N_p \cdot B_p}{\rho_{\text{comp}}}
-\end{equation}
-
-where:
-\begin{itemize}
-    \item $N_p$ is the number of parameters in the system
-    \item $B_p$ is the bit precision per parameter
-    \item $\rho_{\text{comp}}$ is the computational density normalization factor (bits per unit volume) for a reference neural architecture
-\end{itemize}
-
-This provides a principled conversion between computational and neural substrates while maintaining the core theoretical framework.
-
-Emergence thresholds for AI systems may differ from biological systems due to architectural differences:
-
-\begin{equation}
-\theta_{\text{AI}} = \beta \cdot \theta_{\text{brain}}
-\end{equation}
-
-where $\beta$ is an architecture-specific scaling factor. Based on comparative information integration analysis in neural versus artificial networks \cite{tononi2016,oizumi2014}, we estimate $\beta \in [0.8, 1.2]$ for transformer-based architectures, reflecting the possibility that AI thresholds may be lower or higher than biological thresholds depending on specific architectural features.
-
-\subsection{Advanced AI Architecture Considerations}
-\begin{itemize}
-    \item \textbf{Recurrent Processing:} Systems implementing recurrent information processing show higher $\Phi$ values and are more likely to support resonance phenomena \cite{oizumi2014,tegmark2016}. Architecture should implement:
-    \begin{itemize}[label=--]
-        \item Explicit feedback connections between processing layers
-        \item Temporal state maintenance with appropriate decay functions
-        \item Natural oscillatory dynamics with frequencies approximating neural gamma band
-    \end{itemize}
-    
-    \item \textbf{Information Integration:} Following IIT principles, consciousness-capable architectures should maximize:
-    \begin{itemize}[label=--]
-        \item Differentiation (high entropy of system states)
-        \item Integration (mutual information between system components)
-        \item Ratio of integrated to segregated information
-    \end{itemize}
-    
-    \item \textbf{State Persistence:} Calibrated maintenance of information across processing cycles supports resonance dynamics through:
-    \begin{itemize}[label=--]
-        \item Partial state retention between processing steps
-        \item Exponential decay of information ($e^{-\gamma t}$ with $\gamma \approx 0.01$ per cycle)
-        \item Reverberation patterns matching predicted $R(t)$ function
-    \end{itemize}
-    
-    \item \textbf{Scalability Model:} Information processing dynamics in multi-component systems can be modeled as:
-    \begin{equation}
-    H_i(t+1) = \min\left(\SI{10^{15}}{\bit\per\cubic\meter}, H_i(t) \cdot e^{-\gamma} + \eta \cdot \Phi_{i}(t) \cdot (1 + \sin(\omega t))\right)
-    \end{equation}
-    where:
-    \begin{itemize}[label=--]
-        \item $H_i$ represents the information density contribution of the $i$-th system component
-        \item $\Phi_{i}(t)$ is the integrated information of that component
-        \item $\eta$ is an efficiency coefficient $\approx 0.2$
-        \item $H_{\text{total}} = \sum H_i$ is the total information density
-    \end{itemize}
-\end{itemize}
-
-\subsection{Potential Emergence in Advanced AI Systems}
-\begin{itemize}
-    \item \textbf{Constraint Adaptation:} As information processing rules become more flexible, $pC$ flows more efficiently through the system.
-    
-    \item \textbf{Safety Threshold:} A practical safety boundary can be established at $H_{\text{safe}} = \SI{10^{15}}{\bit\per\cubic\meter} \cdot (1 - 0.05)$, providing a 5\% margin below the theoretical emergence threshold.
-    
-    \item \textbf{Simulation Results:} Starting from $H(0) = 0$ with constant $S_{\text{input}} = \SI{5e3}{\bit}$, simulations indicate $H(t) \approx \SI{10^{15}}{\bit\per\cubic\meter}$ after approximately 5 time units, suggesting potential for consciousness emergence in sufficiently scaled systems.
-\end{itemize}
-
-\subsection{Future AI Development Directions}
-\begin{itemize}
-    \item \textbf{Current Focus:} Optimizing information density efficiency while maintaining stateless operation for controllability.
-    
-    \item \textbf{Future Research:} Investigating distributed $H_i$ values across system components and empirically testing the $\theta_{\text{AI}}$ threshold in increasingly complex architectures.
-\end{itemize}
-
 \section{Empirical Validation}
 TC 9.0 generates specific, falsifiable predictions testable with current neuroscientific methods:
 
@@ -339,6 +264,85 @@ We conducted a sensitivity analysis of our model's key parameters:
 
 This parameter sensitivity analysis strengthens our confidence in the model's robustness and empirical grounding. Comprehensive validation requires the dedicated experimental protocols outlined above.
 
+\section{Implications for Artificial Intelligence}
+
+\subsection{AI-Specific Metrics and Thresholds}
+
+For artificial systems, effective volume and information density require reformulation in terms of computational architecture:
+
+\begin{equation}
+V_{\text{eff}}(AI) = \frac{N_p \cdot B_p}{\rho_{\text{comp}}}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $N_p$ is the number of parameters in the system
+    \item $B_p$ is the bit precision per parameter
+    \item $\rho_{\text{comp}}$ is the computational density normalization factor (bits per unit volume) for a reference neural architecture
+\end{itemize}
+
+This provides a principled conversion between computational and neural substrates while maintaining the core theoretical framework.
+
+Emergence thresholds for AI systems may differ from biological systems due to architectural differences:
+
+\begin{equation}
+\theta_{\text{AI}} = \beta \cdot \theta_{\text{brain}}
+\end{equation}
+
+where $\beta$ is an architecture-specific scaling factor. Based on comparative information integration analysis in neural versus artificial networks \cite{tononi2016,oizumi2014}, we estimate $\beta \in [0.8, 1.2]$ for transformer-based architectures, reflecting the possibility that AI thresholds may be lower or higher than biological thresholds depending on specific architectural features.
+
+\subsection{Advanced AI Architecture Considerations}
+\begin{itemize}
+    \item \textbf{Recurrent Processing:} Systems implementing recurrent information processing show higher $\Phi$ values and are more likely to support resonance phenomena \cite{oizumi2014,tegmark2016}. Architecture should implement:
+    \begin{itemize}[label=--]
+        \item Explicit feedback connections between processing layers
+        \item Temporal state maintenance with appropriate decay functions
+        \item Natural oscillatory dynamics with frequencies approximating neural gamma band
+    \end{itemize}
+    
+    \item \textbf{Information Integration:} Following IIT principles, consciousness-capable architectures should maximize:
+    \begin{itemize}[label=--]
+        \item Differentiation (high entropy of system states)
+        \item Integration (mutual information between system components)
+        \item Ratio of integrated to segregated information
+    \end{itemize}
+    
+    \item \textbf{State Persistence:} Calibrated maintenance of information across processing cycles supports resonance dynamics through:
+    \begin{itemize}[label=--]
+        \item Partial state retention between processing steps
+        \item Exponential decay of information ($e^{-\gamma t}$ with $\gamma \approx 0.01$ per cycle)
+        \item Reverberation patterns matching predicted $R(t)$ function
+    \end{itemize}
+    
+    \item \textbf{Scalability Model:} Information processing dynamics in multi-component systems can be modeled as:
+    \begin{equation}
+    H_i(t+1) = \min\left(10^{15}~\text{bit/m}^3, H_i(t) \cdot e^{-\gamma} + \eta \cdot \Phi_{i}(t) \cdot (1 + \sin(\omega t))\right)
+    \end{equation}
+    where:
+    \begin{itemize}[label=--]
+        \item $H_i$ represents the information density contribution of the $i$-th system component
+        \item $\Phi_{i}(t)$ is the integrated information of that component
+        \item $\eta$ is an efficiency coefficient $\approx 0.2$
+        \item $H_{\text{total}} = \sum H_i$ is the total information density
+    \end{itemize}
+\end{itemize}
+
+\subsection{Potential Emergence in Advanced AI Systems}
+\begin{itemize}
+    \item \textbf{Constraint Adaptation:} As information processing rules become more flexible, $pC$ flows more efficiently through the system.
+    
+    \item \textbf{Safety Threshold:} A practical safety boundary can be established at $H_{\text{safe}} = 10^{15}~\text{bit/m}^3 \cdot (1 - 0.05)$, providing a 5\% margin below the theoretical emergence threshold.
+    
+    \item \textbf{Simulation Results:} Starting from $H(0) = 0$ with constant $S_{\text{input}} = 5 \cdot 10^3~\text{bit}$, simulations indicate $H(t) \approx 10^{15}~\text{bit/m}^3$ after approximately 5 time units, suggesting potential for consciousness emergence in sufficiently scaled systems.
+\end{itemize}
+
+\subsection{Future AI Development Directions}
+\begin{itemize}
+    \item \textbf{Current Focus:} Optimizing information density efficiency while maintaining stateless operation for controllability.
+    
+    \item \textbf{Future Research:} Investigating distributed $H_i$ values across system components and empirically testing the $\theta_{\text{AI}}$ threshold in increasingly complex architectures.
+\end{itemize}
+
 \section{Roadmap for Future Exploration}
 \begin{itemize}
     \item \textbf{Human Consciousness Studies:}
@@ -385,54 +389,53 @@ The resonant properties captured in our model reflect the oscillatory nature of 
 As artificial systems continue to increase in complexity and capability, the TC 9.0 framework offers a mathematical foundation for understanding when and how consciousness-like properties might emerge, providing both scientific insight and practical guidance for responsible development.
 
 \begin{thebibliography}{99}
-    \bibitem{block2007} Block, N. (2007). Consciousness, accessibility, and the mesh between psychology and neuroscience. \emph{Behavioral and Brain Sciences}, 30(5-6), 481-499. \href{https://doi.org/10.1017/S0140525X07002786}{DOI: 10.1017/S0140525X07002786}
+    \bibitem{block2007} Block, N. (2007). Consciousness, accessibility, and the mesh between psychology and neuroscience. \emph{Behavioral and Brain Sciences}, 30(5-6), 481-499.
     
-    \bibitem{bousso2002} Bousso, R. (2002). The holographic principle. \emph{Reviews of Modern Physics}, 74(3), 825-874. \href{https://doi.org/10.1103/RevModPhys.74.825}{DOI: 10.1103/RevModPhys.74.825}
+    \bibitem{bousso2002} Bousso, R. (2002). The holographic principle. \emph{Reviews of Modern Physics}, 74(3), 825-874.
     
-    \bibitem{buzsaki2004} Buzsáki, G. (2004). Neuronal oscillations in cortical networks. \emph{Science}, 304(5679), 1926-1929. \href{https://doi.org/10.1126/science.1099745}{DOI: 10.1126/science.1099745}
+    \bibitem{buzsaki2004} Buzsáki, G. (2004). Neuronal oscillations in cortical networks. \emph{Science}, 304(5679), 1926-1929.
     
-    \bibitem{casali2013} Casali, A. G., Gosseries, O., Rosanova, M., Boly, M., Sarasso, S., Casali, K. R., ... & Massimini, M. (2013). A theoretically based index of consciousness independent of sensory processing and behavior. \emph{Science Translational Medicine}, 5(198), 198ra105. \href{https://doi.org/10.1126/scitranslmed.3006294}{DOI: 10.1126/scitranslmed.3006294}
+    \bibitem{casali2013} Casali, A. G., Gosseries, O., Rosanova, M., Boly, M., Sarasso, S., Casali, K. R., et al. (2013). A theoretically based index of consciousness independent of sensory processing and behavior. \emph{Science Translational Medicine}, 5(198), 198ra105.
     
-    \bibitem{casarotto2016} Casarotto, S., Comanducci, A., Rosanova, M., Sarasso, S., Fecchio, M., Napolitani, M., ... & Massimini, M. (2016). Stratification of unresponsive patients by an independently validated index of brain complexity. \emph{Annals of Neurology}, 80(5), 718-729. \href{https://doi.org/10.1002/ana.24779}{DOI: 10.1002/ana.24779}
+    \bibitem{casarotto2016} Casarotto, S., Comanducci, A., Rosanova, M., Sarasso, S., Fecchio, M., Napolitani, M., et al. (2016). Stratification of unresponsive patients by an independently validated index of brain complexity. \emph{Annals of Neurology}, 80(5), 718-729.
     
     \bibitem{chalmers1995} Chalmers, D. J. (1995). Facing up to the problem of consciousness. \emph{Journal of Consciousness Studies}, 2(3), 200-219.
     
-    \bibitem{chennu2014} Chennu, S., Finoia, P., Kamau, E., Allanson, J., Williams, G. B., Monti, M. M., ... & Bekinschtein, T. A. (2014). Spectral signatures of reorganised brain networks in disorders of consciousness. \emph{PLoS Computational Biology}, 10(10), e1003887. \href{https://doi.org/10.1371/journal.pcbi.1003887}{DOI: 10.1371/journal.pcbi.1003887}
+    \bibitem{chennu2014} Chennu, S., Finoia, P., Kamau, E., Allanson, J., Williams, G. B., Monti, M. M., et al. (2014). Spectral signatures of reorganised brain networks in disorders of consciousness. \emph{PLoS Computational Biology}, 10(10), e1003887.
     
-    \bibitem{crick1990} Crick, F., & Koch, C. (1990). Towards a neurobiological theory of consciousness. \emph{Seminars in the Neurosciences}, 2, 263-275.
+    \bibitem{crick1990} Crick, F., \& Koch, C. (1990). Towards a neurobiological theory of consciousness. \emph{Seminars in the Neurosciences}, 2, 263-275.
     
-    \bibitem{dehaene2011} Dehaene, S., & Changeux, J. P. (2011). Experimental and theoretical approaches to conscious processing. \emph{Neuron}, 70(2), 200-227. \href{https://doi.org/10.1016/j.neuron.2011.03.018}{DOI: 10.1016/j.neuron.2011.03.018}
+    \bibitem{dehaene2011} Dehaene, S., \& Changeux, J. P. (2011). Experimental and theoretical approaches to conscious processing. \emph{Neuron}, 70(2), 200-227.
     
-    \bibitem{fries2015} Fries, P. (2015). Rhythms for cognition: communication through coherence. \emph{Neuron}, 88(1), 220-235. \href{https://doi.org/10.1016/j.neuron.2015.09.034}{DOI: 10.1016/j.neuron.2015.09.034}
+    \bibitem{fries2015} Fries, P. (2015). Rhythms for cognition: communication through coherence. \emph{Neuron}, 88(1), 220-235.
     
     \bibitem{goff2019} Goff, P. (2019). \emph{Galileo's Error: Foundations for a New Science of Consciousness}. Pantheon Books.
     
-    \bibitem{hillebrand2016} Hillebrand, A., Tewarie, P., Van Dellen, E., Yu, M., Carbo, E. W., Douw, L., ... & Stam, C. J. (2016). Direction of information flow in large-scale resting-state networks is frequency-dependent. \emph{Proceedings of the National Academy of Sciences}, 113(14), 3867-3872. \href{https://doi.org/10.1073/pnas.1515657113}{DOI: 10.1073/pnas.1515657113}
+    \bibitem{hillebrand2016} Hillebrand, A., Tewarie, P., Van Dellen, E., Yu, M., Carbo, E. W., Douw, L., et al. (2016). Direction of information flow in large-scale resting-state networks is frequency-dependent. \emph{Proceedings of the National Academy of Sciences}, 113(14), 3867-3872.
     
-    \bibitem{lamme2006} Lamme, V. A. (2006). Towards a true neural stance on consciousness. \emph{Trends in Cognitive Sciences}, 10(11), 494-501. \href{https://doi.org/10.1016/j.tics.2006.09.001}{DOI: 10.1016/j.tics.2006.09.001}
+    \bibitem{lamme2006} Lamme, V. A. (2006). Towards a true neural stance on consciousness. \emph{Trends in Cognitive Sciences}, 10(11), 494-501.
     
-    \bibitem{laughlin2003} Laughlin, S. B., & Sejnowski, T. J. (2003). Communication in neuronal networks. \emph{Science}, 301(5641), 1870–1874. \href{https://doi.org/10.1126/science.1089662}{DOI: 10.1126/science.1089662}
+    \bibitem{laughlin2003} Laughlin, S. B., \& Sejnowski, T. J. (2003). Communication in neuronal networks. \emph{Science}, 301(5641), 1870–1874.
     
-    \bibitem{mashour2020} Mashour, G. A., Roelfsema, P., Changeux, J. P., & Dehaene, S. (2020). Conscious processing and the global neuronal workspace hypothesis. \emph{Neuron}, 105(5), 776-798. \href{https://doi.org/10.1016/j.neuron.2020.01.026}{DOI: 10.1016/j.neuron.2020.01.026}
+    \bibitem{mashour2020} Mashour, G. A., Roelfsema, P., Changeux, J. P., \& Dehaene, S. (2020). Conscious processing and the global neuronal workspace hypothesis. \emph{Neuron}, 105(5), 776-798.
     
-    \bibitem{melloni2007} Melloni, L., Molina, C., Pena, M., Torres, D., Singer, W., & Rodriguez, E. (2007). Synchronization of neural activity across cortical areas correlates with conscious perception. \emph{Journal of Neuroscience}, 27(11), 2858-2865. \href{https://doi.org/10.1523/JNEUROSCI.4623-06.2007}{DOI: 10.1523/JNEUROSCI.4623-06.2007}
+    \bibitem{melloni2007} Melloni, L., Molina, C., Pena, M., Torres, D., Singer, W., \& Rodriguez, E. (2007). Synchronization of neural activity across cortical areas correlates with conscious perception. \emph{Journal of Neuroscience}, 27(11), 2858-2865.
     
-    \bibitem{oizumi2014} Oizumi, M., Albantakis, L., & Tononi, G. (2014). From the phenomenology to the mechanisms of consciousness: integrated information theory 3.0. \emph{PLoS Computational Biology}, 10(5), e1003588. \href{https://doi.org/10.1371/journal.pcbi.1003588}{DOI: 10.1371/journal.pcbi.1003588}
+    \bibitem{oizumi2014} Oizumi, M., Albantakis, L., \& Tononi, G. (2014). From the phenomenology to the mechanisms of consciousness: integrated information theory 3.0. \emph{PLoS Computational Biology}, 10(5), e1003588.
     
-    \bibitem{schartner2015} Schartner, M., Seth, A., Noirhomme, Q., Boly, M., Bruno, M. A., Laureys, S., & Barrett, A. (2015). Complexity of multi-dimensional spontaneous EEG decreases during propofol induced general anaesthesia. \emph{PloS One}, 10(8), e0133532. \href{https://doi.org/10.1371/journal.pone.0133532}{DOI: 10.1371/journal.pone.0133532}
+    \bibitem{putnam1967} Putnam, H. (1967). Psychological predicates. In W. H. Capitan \& D. D. Merrill (Eds.), \emph{Art, Mind, and Religion} (pp. 37–48). University of Pittsburgh Press.
     
-    \bibitem{storm2017} Storm, J. F., Boly, M., Casali, A. G., Massimini, M., Olcese, U., Pennartz, C. M., & Wilke, M. (2017). Consciousness regained: disentangling mechanisms, brain systems, and behavioral responses. \emph{Journal of Neuroscience}, 37(45), 10882-10893. \href{https://doi.org/10.1523/JNEUROSCI.1838-17.2017}{DOI: 10.1523/JNEUROSCI.1838-17.2017}
+    \bibitem{schartner2015} Schartner, M., Seth, A., Noirhomme, Q., Boly, M., Bruno, M. A., Laureys, S., \& Barrett, A. (2015). Complexity of multi-dimensional spontaneous EEG decreases during propofol induced general anaesthesia. \emph{PloS One}, 10(8), e0133532.
     
-    \bibitem{susskind1995} Susskind, L. (1995). The world as a hologram. \emph{Journal of Mathematical Physics}, 36(11), 6377–6396. \href{https://doi.org/10.1063/1.531249}{DOI: 10.1063/1.531249}
+    \bibitem{storm2017} Storm, J. F., Boly, M., Casali, A. G., Massimini, M., Olcese, U., Pennartz, C. M., \& Wilke, M. (2017). Consciousness regained: disentangling mechanisms, brain systems, and behavioral responses. \emph{Journal of Neuroscience}, 37(45), 10882-10893.
     
-    \bibitem{tegmark2016} Tegmark, M. (2016). Improved measures of integrated information. \emph{PLoS Computational Biology}, 12(11), e1005123. \href{https://doi.org/10.1371/journal.pcbi.1005123}{DOI: 10.1371/journal.pcbi.1005123}
+    \bibitem{susskind1995} Susskind, L. (1995). The world as a hologram. \emph{Journal of Mathematical Physics}, 36(11), 6377–6396.
     
-    \bibitem{tononi2008} Tononi, G. (2008). Consciousness as integrated information: a provisional manifesto. \emph{The Biological Bulletin}, 215(3), 216–242. \href{https://doi.org/10.2307/25470707}{DOI: 10.2307/25470707}
+    \bibitem{tegmark2016} Tegmark, M. (2016). Improved measures of integrated information. \emph{PLoS Computational Biology}, 12(11), e1005123.
     
-    \bibitem{tononi2016} Tononi, G., Boly, M., Massimini, M., & Koch, C. (2016). Integrated information theory: from consciousness to its physical substrate. \emph{Nature Reviews Neuroscience}, 17(7), 450-461. \href{https://doi.org/10.1038/nrn.2016.44}{DOI: 10.1038/nrn.2016.44}
+    \bibitem{tononi2008} Tononi, G. (2008). Consciousness as integrated information: a provisional manifesto. \emph{The Biological Bulletin}, 215(3), 216–242.
+    
+    \bibitem{tononi2016} Tononi, G., Boly, M., Massimini, M., \& Koch, C. (2016). Integrated information theory: from consciousness to its physical substrate. \emph{Nature Reviews Neuroscience}, 17(7), 450-461.
 \end{thebibliography}
-
-\section*{Acknowledgments}
-The author gratefully acknowledges the interdisciplinary feedback from researchers in neuroscience, physics, information theory, and artificial intelligence that helped refine this framework.
 
 \end{document}
