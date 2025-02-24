@@ -1,0 +1,36 @@
+name: Build TC 9.0 PDFs
+
+on:
+  push:
+    branches: [ main ]  # Runs on pushes to main branch
+  pull_request:
+    branches: [ main ]  # Runs on PRs to main
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the repo
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Compile LaTeX files to PDFs
+      - name: Compile LaTeX Documents
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |  # List all .tex files to compile
+            tc9_en.tex
+            tc9_es.tex
+            tc9_fr.tex
+            tc9_cn.tex
+
+      # Step 3: Upload PDFs as artifacts
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: TC9-PDFs
+          path: |  # Where the PDFs end up
+            tc9_en.pdf
+            tc9_es.pdf
+            tc9_fr.pdf
+            tc9_cn.pdf
