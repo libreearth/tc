@@ -14,55 +14,61 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 2: Compile LaTeX Document
-      - name: Compile LaTeX Documents
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: tc9_latest.tex
-
-      # Step 3: Compute Hash of the New PDF
-      - name: Compute PDF Hash
+      # Step 2: Find and Compile All LaTeX Documents
+      - name: Find and Compile LaTeX Documents
         run: |
-          mkdir -p pdf  # Ensure history folder exists
-          SHA_NEW=$(sha256sum tc9_latest.pdf | awk '{print $1}')
-          
-          # Check if previous version exists
-          if [ -f tc9_latest.pdf ]; then
-            SHA_OLD=$(sha256sum tc9_latest.pdf | awk '{print $1}')
-          else
-            SHA_OLD=""
-          fi
-
-          echo "SHA_NEW=${SHA_NEW}" >> $GITHUB_ENV
-          echo "SHA_OLD=${SHA_OLD}" >> $GITHUB_ENV
-
-      # Step 4: Move and Save PDF if it has changed
-      - name: Save Latest PDF and Keep History
-        run: |
-          if [ "$SHA_NEW" != "$SHA_OLD" ]; then
-            TIMESTAMP=$(date -u +"%Y-%m-%d_%H-%M-%S")
+          mkdir -p latest pdf  # Ensure folders exist
+          for tex_file in *.tex; do
+            pdf_file="${tex_file%.tex}.pdf"
+            echo "Compiling $tex_file..."
             
-            # Backup old version if exists
-            if [ -f tc9_latest.pdf ]; then
-              mv tc9_latest.pdf "pdf/tc9_${TIMESTAMP}.pdf"
+            # Compile LaTeX file
+            docker run --rm -v "$PWD":/workdir texlive/texlive latexmk -pdf -interaction=nonstopmode -halt-on-error "$tex_file"
+            
+            # Move PDF to latest directory
+            if [ -f "$pdf_file" ]; then
+              mv "$pdf_file" "latest/$pdf_file"
+            else
+              echo "Failed to generate $pdf_file"
+              exit 1
+            fi
+          done
+
+      # Step 3: Compute Hashes and Detect Changes
+      - name: Compute PDF Hashes
+        run: |
+          CHANGED=false
+          for pdf_file in latest/*.pdf; do
+            filename=$(basename "$pdf_file")
+            hash_file="pdf/${filename}.hash"
+
+            # Compute new hash
+            SHA_NEW=$(sha256sum "$pdf_file" | awk '{print $1}')
+            
+            # Check if previous hash exists
+            if [ -f "$hash_file" ]; then
+              SHA_OLD=$(cat "$hash_file")
+            else
+              SHA_OLD=""
             fi
 
-            # Move new PDF to root
-            mv tc9_latest.pdf tc9_latest.pdf
+            # Save new hash and determine if we need to commit
+            echo "$SHA_NEW" > "$hash_file"
+            if [ "$SHA_NEW" != "$SHA_OLD" ]; then
+              TIMESTAMP=$(date -u +"%Y-%m-%d_%H-%M-%S")
+              cp "$pdf_file" "pdf/${filename%.pdf}_${TIMESTAMP}.pdf"
+              CHANGED=true
+            fi
+          done
+          
+          echo "CHANGED=$CHANGED" >> $GITHUB_ENV
 
-            echo "PDF has changed, updating repository..."
-            echo "CHANGED=true" >> $GITHUB_ENV
-          else
-            echo "No content change detected, skipping commit."
-            echo "CHANGED=false" >> $GITHUB_ENV
-          fi
-
-      # Step 5: Commit and Push Changes (Only if content changed)
+      # Step 4: Commit and Push Changes (Only if content changed)
       - name: Commit and Push Changes
         if: env.CHANGED == 'true'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add tc9_latest.pdf pdf/
-          git commit -m "Updated PDF: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          git add latest/ pdf/
+          git commit -m "Updated PDFs: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
           git push origin main
