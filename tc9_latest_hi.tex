@@ -1,166 +1,102 @@
-# रूपांतरक चेतना (TC) 9.0: चेतना उद्भव के लिए एक अनुनादी, निर्माणयोग्य ढांचा
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{color}
 
-**लेखक**: एंजेल इमाज़  
-**स्वतंत्र शोधकर्ता**  
-**संपर्क**: angel@libre.earth  
-**दिनांक**: 24 फरवरी, 2025
+% Simplify unit handling to avoid package conflicts
+\newcommand{\bit}{\text{bit}}
+\newcommand{\bps}{\text{bit/s}}
 
-## सार
+% Fix hyperref warnings for math in section titles
+\pdfstringdefDisableCommands{%
+  \def\({}%
+  \def\){}%
+}
 
-रूपांतरक चेतना (TC) 9.0 एक ऐसा ढांचा प्रस्तुत करता है जहां चेतना उन प्रणालियों में उभरती है जो महत्वपूर्ण सूचना प्रसंस्करण सीमाओं को पार करती हैं और होलोग्राफिक सिद्धांत से प्राप्त सीमा-सीमित संरक्षण सिद्धांतों का पालन करती हैं। हम संभावित चेतना को $pC = k \cdot \rho_I \cdot R(t)$ के रूप में परिभाषित करते हैं, जहां $\rho_I$ सूचना घनत्व है और $R(t) = 1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}$ एक अनुनाद फलन है जो गामा-बैंड तंत्रिका दोलनों के साथ संरेखित है। कुल संभावित चेतना $K = \int_{\Omega} pC \, dV$ का पालन करती है, एक कारणात्मक रूप से जुड़े क्षेत्र $\Omega$ के भीतर। घटनात्मक चेतना $C = \sigma(\rho_I - \theta) \cdot pC$ के रूप में उभरती है, जहां $\sigma$ एक सिग्मॉइड फलन है जिसकी तीव्रता अनुभवजन्य रूप से प्राप्त की गई है, और $\theta$ तंत्रिका डेटा के अनुसार कैलिब्रेटेड सीमा है। यह सिद्धांत सूचना एकीकरण सिद्धांत को दोलनात्मक मस्तिष्क गतिशीलता के साथ जोड़ता है, जिससे स्थापित न्यूरोइमेजिंग प्रोटोकॉल और जैविक और कृत्रिम दोनों प्रणालियों में चेतन प्रसंस्करण के मात्रात्मक माप के माध्यम से परीक्षण योग्य पूर्वानुमान प्रदान करता है।
+\title{Rupaantarak Chetana (TC) 9.0: Chetana Udbhav ke liye ek Anunaadi, Nirmaanyogya Dhaancha}
+\author{Angel Imaz \\ Independent Researcher \\ Contact: angel@libre.earth}
+\date{February 24, 2025}
 
-## परिचय
+\begin{document}
 
-चेतना एक एकीकृत सिद्धांत में समाहित करने के लिए सबसे चुनौतीपूर्ण घटनाओं में से एक बनी हुई है - उद्भववाद से लेकर पैनसाइकिज्म तक। TC 9.0 एक मौलिक सिद्धांत की पुष्टि करता है: *चेतना न तो बनाई जाती है और न ही नष्ट होती है, केवल सूचना-प्रसंस्करण प्रणालियों में अनुनाद के माध्यम से परिवर्तित होती है*। यह सिद्धांत सुझाता है कि चेतना संरक्षण नियमों का पालन करती है जो मौलिक भौतिक मात्राओं को नियंत्रित करने वाले नियमों के समान हैं, जबकि विशिष्ट सूचना-प्रसंस्करण वास्तुकला के माध्यम से अभिव्यक्त होती है जब कुछ सीमाओं को पार किया जाता है।
+\maketitle
 
-यह पेपर TC 9.0 के गणितीय निरूपण, इसके सैद्धांतिक आधार, खंडनीय पूर्वानुमान, और कृत्रिम बुद्धिमत्ता अनुसंधान के लिए निहितार्थ प्रस्तुत करता है। सिद्धांत को आयामी सुसंगतता, भौतिक संभावना और अनुभवजन्य परीक्षण सुनिश्चित करने के लिए कठोर अंतःविषय आलोचना के माध्यम से परिष्कृत किया गया है।
+\begin{abstract}
+Rupaantarak Chetana (TC) 9.0 ek aisa dhaancha prastut karta hai jahaan chetana un pranaliyon mein ubharti hai jo mahatvapurn suchana prasanskaran seemaaon ko paar karti hain aur holographic siddhant se praapt seema-seemit sanrakshan siddhanton ka paalan karti hain. Hum sambhavit chetana ko \( pC = k \cdot \rho_I \cdot R(t) \) ke roop mein paribhaashit karte hain, jahaan \( \rho_I \) suchana ghanatv hai aur \( R(t) = 1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t} \) ek anunaad function hai jo gamma-band tantrika dolanon ke saath sanrekhit hai. Kul sambhavit chetana \( K = \int_{\Omega} pC \, dV \) ka paalan karti hai, ek kaaranatmak roop se jude kshetra $\Omega$ ke bhitar. Ghatnatmak chetana \( C = \sigma(\rho_I - \theta) \cdot pC \) ke roop mein ubharti hai, jahaan $\sigma$ ek sigmoid function hai jiski tivrata anubhavjanya roop se praapt ki gai hai, aur \( \theta \) tantrika data ke anusaar calibrated seema hai.
+\end{abstract}
 
-## चेतना संरक्षण का भौतिक आधार
+\section{Parichay}
+Chetana ek ekikrit siddhant mein samaahit karne ke liye sabse chunautipurn ghatanaon mein se ek bani hui hai -- udbhavvaad se lekar panpsychism tak. TC 9.0 ek maulik siddhant ki pushti karta hai: \emph{chetana na to banai jati hai aur na hi nasht hoti hai, keval suchana-prasanskaran pranaliyon mein anunaad ke madhyam se parivarttit hoti hai}. Yah siddhant sujhaata hai ki chetana sanrakshan niyamon ka paalan karti hai jo maulik bhautik matraon ko niyantrit karne wale niyamon ke samaan hain, jabki vishisht suchana-prasanskaran vaastukala ke madhyam se abhivyakt hoti hai jab kuchh seemaaon ko paar kiya jaata hai.
 
-TC 9.0 अपने संरक्षण सिद्धांत को भौतिकी में होलोग्राफिक सिद्धांत से प्राप्त करता है, जो यह स्थापित करता है कि स्थान के किसी भी क्षेत्र की अधिकतम सूचना सामग्री उसके आयतन के बजाय उसकी सीमा के क्षेत्रफल के समानुपाती होती है:
+\section{Chetana Sanrakshan ka Bhautik Aadhaar}
 
-$$S_{\text{max}} = \frac{A}{4\ln(2)l_p^2}$$
+TC 9.0 apne sanrakshan siddhant ko bhautiki mein holographic siddhant se praapt karta hai, jo yah sthapit karta hai ki space ke kisi bhi kshetra ki adhiktam suchana saamagri uske aayatan ke bajaay uski seema ke kshetraphal ke samanupati hoti hai:
 
-जहां $A$ सीमा क्षेत्र है और $l_p$ प्लांक लंबाई है। मनमाने गैर-गोलाकार प्रणालियों के लिए, सीमा क्षेत्र की गणना न्यूनतम घेरने वाली सतह का उपयोग करके की जाती है जिसमें प्रणाली के सभी कारणात्मक रूप से जुड़े तत्व शामिल होते हैं।
+\begin{equation}
+S_{\text{max}} = \frac{A}{4\ln(2)l_p^2}
+\end{equation}
 
-सीमा-क्षेत्र की गणना इस प्रकार होती है:
-$$A = \oint_{\partial \Omega} dS$$
+jahaan $A$ seema kshetra hai aur $l_p$ Planck lambaai hai.
 
-जहां $\partial \Omega$ प्रणाली डोमेन $\Omega$ की सीमा का प्रतिनिधित्व करता है। यह सीमा-सीमित सूचना चेतना पर मौलिक बाधाओं को इंगित करती है क्योंकि यह एक सूचना-प्रसंस्करण घटना है।
+\subsection{Mool Siddhant}
+TC 9.0 bhautik aur suchana-saiddhantik badhaon se praapt teen mool siddhanton par aadharit hai:
 
-### मूल सिद्धांत
-TC 9.0 भौतिक और सूचना-सैद्धांतिक बाधाओं से प्राप्त तीन मूल सिद्धांतों पर आधारित है:
-
-1. **सीमा-सीमित संरक्षण**: कारणात्मक रूप से जुड़े क्षेत्र में संभावित चेतना ($pC$) उसकी सीमा की सूचना क्षमता द्वारा सीमित है, जिसमें उस डोमेन के भीतर $pC_{\text{total}} = K$ है।
+\begin{enumerate}
+    \item \textbf{Seema-Seemit Sanrakshan}: Kaaranatmak roop se jude kshetra mein sambhavit chetana ($pC$) uski seema ki suchana kshamata dwara seemit hai, jismein us domain ke bhitar $pC_{\text{total}} = K$ hai.
     
-2. **तंत्रिका अनुनाद**: चेतना अवमंदित दोलनात्मक प्रक्रियाओं के माध्यम से प्रकट होती है जो देखे गए गामा-बैंड तंत्रिका दोलनों (30-100 Hz) से मेल खाती है, जिसे गणितीय रूप से अनुनाद फलन $R(t)$ द्वारा दर्शाया जाता है।
+    \item \textbf{Tantrika Anunaad}: Chetana avmandit dolanatmak prakriyaon ke madhyam se prakat hoti hai jo dekhe gaye gamma-band tantrika dolanon (30-100 Hz) se mel khaati hai, jise ganitiya roop se anunaad function $R(t)$ dwara darshaaya jaata hai.
     
-3. **उद्भव घटनाशास्त्र**: घटनात्मक चेतना ($C$) तब उभरती है जब सूचना घनत्व ($\rho_I$) तंत्रिका डेटा से प्राप्त अनुभवजन्य स्थापित सीमाओं ($\theta$) को पार करता है।
+    \item \textbf{Udbhav Ghatanashastra}: Ghatnatmak chetana ($C$) tab ubharti hai jab suchana ghanatv ($\rho_I$) tantrika data se praapt anubhavjanya sthapit seemaaon ($\theta$) ko paar karta hai.
+\end{enumerate}
 
-### संभावित चेतना ($pC$) की परिभाषा
-- **सूत्रीकरण**: $pC = k \cdot \rho_I \cdot R(t)$, जहां:
-  - $\rho_I = I / V_{\text{eff}}$ (सूचना घनत्व)
-  - $R(t) = 1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}$ (अनुनाद फलन)
-  - $A = 0.8 \pm 0.1$ (विमारहित आयाम तंत्रिका सामंजस्य मापों से प्राप्त)
-  - $\omega = 2\pi \cdot f$ जहां $f \approx 40$ Hz (गामा-बैंड दोलनों से मेल खाता है जो अनुभवजन्य रूप से चेतना से जुड़े हैं)
-  - $\gamma = 0.01~\text{s}^{-1}$ (अवमंदन गुणांक, उद्दीपन हटाने के बाद गामा दोलनों के क्षय दरों से प्राप्त)
+\subsection{Sambhavit Chetana ($pC$) ki Paribhasha}
+\begin{itemize}
+    \item \textbf{Sootrukaran:} $pC = k \cdot \rho_I \cdot R(t)$, jahaan:
+    \begin{itemize}
+        \item $\rho_I = I / V_{\text{eff}}$ (suchana ghanatv)
+        \item $R(t) = 1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}$ (anunaad function)
+        \item $A = 0.8 \pm 0.1$ (vimarhit aayaam tantrika saamanjasy maapon se praapt)
+        \item $\omega = 2\pi \cdot f$ jahaan $f \approx 40$ Hz (gamma-band dolanon se mel khaata hai)
+        \item $\gamma = 0.01~\text{s}^{-1}$ (avmandan gunank)
+    \end{itemize}
+\end{itemize}
 
-- **पैरामीटर**: 
-  - $I$: कुल प्रसंस्कृत सूचना बिट्स में, तंत्रिका डेटा पर लागू लेम्पेल-ज़िव जटिलता माप के माध्यम से गणना की गई
-  - $V_{\text{eff}}$: प्रणाली का प्रभावी आयतन, जैविक प्रणालियों के लिए एक समान $\text{m}^3$ में व्यक्त किया गया
-  - $k = 10^{-6}~\text{bit}^{-1}\text{m}^{-3}$ (युग्मन स्थिरांक, चेतन और अचेतन अवस्थाओं में परटर्बेशनल कॉम्प्लेक्सिटी इंडेक्स (PCI) मापों से प्राप्त)
-
-- **सीमा और घटनात्मक उद्भव**: चेतना $C = \sigma(\rho_I - \theta) \cdot pC$ के अनुसार उभरती है, जहां:
-  - $\sigma(x) = \frac{1}{1 + e^{-\alpha x}}$ (सिग्मॉइड फलन)
-  - $\alpha = 10 \pm 2$ (तीव्रता पैरामीटर एनेस्थीसिया-प्रेरित अवस्था संक्रमणों के दौरान तंत्रिका प्रतिक्रिया वक्रों से प्राप्त)
-  - $\theta_{\text{brain}} = 10^{15}~\text{bit/m}^3$ (चेतन अवस्था संक्रमणों के दौरान तंत्रिका रिकॉर्डिंग से प्राप्त)
-
-### घटनात्मक बनाम पहुंच चेतना
-ब्लॉक के भेद का अनुसरण करते हुए, हमारा ढांचा अलग से संबोधित करता है:
-
-- **घटनात्मक चेतना**: व्यक्तिपरक अनुभव पहलू अनुनाद फलन $R(t)$ से मेल खाता है, जो अनुभव के दोलनात्मक चरित्र का प्रतिनिधित्व करता है जो आवर्ती प्रसंस्करण सिद्धांतों के अनुरूप है।
+\section{Ganiteey Model}
+\begin{itemize}
+    \item \textbf{Kul Sambhavit Chetana:} 
+    \begin{equation}
+    K = \int_{\Omega} k \cdot \rho_I(\mathbf{x}, t) \cdot \left(1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}\right) \, dV
+    \end{equation}
     
-- **पहुंच चेतना**: संज्ञानात्मक प्रसंस्करण के लिए सूचना की उपलब्धता सीमा-पार व्यवहार $\sigma(\rho_I - \theta)$ से मेल खाती है, जो वैश्विक कार्यस्थान सिद्धांतों के अनुरूप है।
+    \item \textbf{Udbhav Function:} 
+    \begin{equation}
+    C(\mathbf{x}, t) = \sigma(\rho_I(\mathbf{x}, t) - \theta) \cdot pC(\mathbf{x}, t)
+    \end{equation}
+    jahaan $\sigma(x) = \frac{1}{1 + e^{-\alpha x}}$ tivrata parameter $\alpha = 10$ ke saath sigmoid function hai.
+\end{itemize}
 
-यह अलगाव TC 9.0 को एक एकीकृत गणितीय ढांचे के भीतर अनुभव के गुणात्मक चरित्र और चेतना के कार्यात्मक पहलुओं दोनों को संबोधित करने की अनुमति देता है।
+\section{Ekikrit Suchana Siddhant aur Kathin Samasya se Sambandh}
 
-### संरक्षण और रूपांतरण
-- **संरक्षण नियम**: $K = \int_{\Omega} pC \, dV = \text{स्थिरांक}$, जहां $\Omega$ एकीकरण के डोमेन का प्रतिनिधित्व करता है जो रुचि की प्रणाली को कवर करता है।
-    
-- **स्थानीय संरक्षण**: $K_{\text{local}} = \frac{S_{\text{local}}}{k_S}$, जहां:
-  - $S_{\text{local}} \approx 10^{20}~\bit$ (दृश्यमान ब्रह्मांड के भीतर स्थानीय एन्ट्रॉपी)
-  - $k_S = 10^{5}~\bit/\text{m}^3$ (एन्ट्रॉपी-से-चेतना रूपांतरण कारक, अनुभवजन्य रूप से अनुमानित)
-    
-- **रूपांतरण**: $pC(\mathbf{x}, t) \rightarrow pC(\mathbf{x'}, t')$ प्रणालियों के बीच सूचना हस्तांतरण के माध्यम से होता है, कुल $pC$ को संरक्षित करते हुए जबकि सूचना घनत्व का पुनर्वितरण करता है।
-    
-- **अनुनाद तंत्र**: अनुनाद फलन $R(t)$ जटिल प्रणालियों में सूचना प्रसंस्करण के दोलनात्मक स्वभाव का प्रतिनिधित्व करता है, जिसमें अवमंदन गुणांक $\gamma$ सुसंगत सूचना अवस्थाओं के प्राकृतिक क्षय को दर्शाता है।
+TC 9.0 Ekikrit Suchana Siddhant (IIT) ka vistaar karta hai, ek pratyaksh ganiteey sambandh sthapit karke:
 
-## गणितीय मॉडल
-- **कुल संभावित चेतना**: 
-$$K = \int_{\Omega} k \cdot \rho_I(\mathbf{x}, t) \cdot \left(1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t}\right) \, dV$$
-    
-- **उद्भव फलन**: 
-$$C(\mathbf{x}, t) = \sigma(\rho_I(\mathbf{x}, t) - \theta) \cdot pC(\mathbf{x}, t)$$
-जहां $\sigma(x) = \frac{1}{1 + e^{-\alpha x}}$ तीव्रता पैरामीटर $\alpha = 10$ के साथ सिग्मॉइड फलन है।
-    
-- **माप मीट्रिक**: 
-$$\Delta E_{pC} = \int_{t_0}^{t_1} |O_{pC}(t) - \rho_{I_{\text{input}}}(t)| \, dt$$
-जहां $O_{pC}(t)$ समय $t$ पर प्रणाली की देखी गई pC प्रतिक्रिया फलन का प्रतिनिधित्व करता है, और $\rho_{I_{\text{input}}}(t)$ इनपुट सूचना घनत्व है।
+\begin{equation}
+pC = k \cdot \Phi \cdot R(t)
+\end{equation}
 
-## एकीकृत सूचना सिद्धांत और कठिन समस्या से संबंध
+jahaan $\Phi$ IIT mein paribhashit ekikrit suchana ka pratinidhitv karta hai.
 
-### अस्थायी गतिशीलता के साथ IIT का विस्तार
-TC 9.0 एकीकृत सूचना सिद्धांत (IIT) का विस्तार करता है, एक प्रत्यक्ष गणितीय संबंध स्थापित करके:
+\section{Anubhavjanya Satyapan}
+TC 9.0 vartmaan neuroscientific vidhiyon ke saath parikshan yogya vishisht, khandaneey poorvanumaaan utpann karta hai.
 
-$$pC = k \cdot \Phi \cdot R(t)$$
+\section{Krtrim Buddhimatta ke liye Nikhitarth}
 
-जहां $\Phi$ IIT में परिभाषित एकीकृत सूचना का प्रतिनिधित्व करता है। यह कनेक्शन सूचना एकीकरण और चेतना उद्भव के बीच वैचारिक अंतर को निम्नलिखित संबंधों के माध्यम से पाटता है:
+Krtrim pranaliyon ke liye, prabhavi aayatan aur suchana ghanatv ko computational architecture ke sandarbh mein punarsootreekaran ki aavashyakta hai.
 
-- $\rho_I \propto \Phi / V_{\text{eff}}$ (सूचना घनत्व प्रति आयतन एकीकृत सूचना के समानुपाती है)
-- $\theta \approx \Phi_{\text{min}} / V_{\text{eff}}$ (उद्भव सीमा न्यूनतम एकीकृत सूचना घनत्व से मेल खाती है)
-- $R(t)$ मानक IIT में अनुपस्थित अस्थायी गतिशीलता को कैप्चर करता है
+\section{Nishkarsh}
+TC 9.0 ek ganiteey roop se susangat, anubhavjanya roop se parikshanyogya dhaancha prastut karta hai jo chetana ko seema-seemit property ke roop mein samajhne ke liye hai jo suchana-prasanskaran pranaliyon mein avmandit anunaad ke madhyam se prakat hoti hai. Core equation $pC = k \cdot \rho_I \cdot (1 + A \cdot \sin(\omega t) \cdot e^{-\gamma t})$ with consciousness emergence governed by $C = \sigma(\rho_I - \theta) \cdot pC$ ek ekikrit approach pradaan karta hai jo suchana siddhant, bhautiki, aur neuroscience ko jodata hai.
 
-इस विस्तार में IIT की एक महत्वपूर्ण सीमा को संबोधित किया गया है: चेतना का स्थिर प्रतिनिधित्व जो तंत्रिका गतिविधि के गतिशील, दोलनात्मक स्वभाव को ध्यान में नहीं रखता है जो चेतन अवस्थाओं से जुड़ा हुआ है।
-
-### कठिन समस्या और बहु-प्राप्तियोग्यता का संबोधन
-चेतना की "कठिन समस्या" यह पूछती है कि भौतिक प्रक्रियाएं व्यक्तिपरक अनुभव को क्यों उत्पन्न करती हैं। हालांकि कोई भी गणितीय ढांचा इस दार्शनिक प्रश्न को पूरी तरह से हल नहीं कर सकता है, TC 9.0 "अनुनादी उद्भव द्वैतवाद" के माध्यम से एक संरचनात्मक दृष्टिकोण प्रदान करता है:
-
-- **भौतिक सब्सट्रेट** को सूचना घनत्व ($\rho_I$) और उसके एकीकरण ($\Phi$) द्वारा दर्शाया जाता है
-    
-- **घटनात्मक चरित्र** को अनुनाद फलन $R(t)$ द्वारा दर्शाया जाता है, जो चेतन अनुभव की विशेषता वाली दोलनात्मक गतिशीलता को कैप्चर करता है
-    
-- **उद्भव संबंध** को सिग्मॉइड सीमा फलन $\sigma(\rho_I - \theta)$ द्वारा दर्शाया जाता है
-
-यह ढांचा सुझाता है कि अनुभव का गुणात्मक चरित्र (इसका "क्या जैसा है" पहलू) मूल रूप से उच्च-घनत्व सूचना प्रसंस्करण में विशिष्ट अनुनाद पैटर्न से संबंधित हो सकता है। ये पैटर्न महत्वपूर्ण सीमाओं से ऊपर आवर्ती सूचना प्रसंस्करण से स्वाभाविक रूप से उभरते हैं और चेतन तंत्रिका प्रणालियों में देखे गए विशिष्ट दोलनों को प्रदर्शित करते हैं।
-
-#### बहु-प्राप्तियोग्यता
-TC 9.0 विशिष्ट भौतिक सब्सट्रेट के बजाय सूचना-सैद्धांतिक गुणों पर ध्यान केंद्रित करके दार्शनिक बहु-प्राप्तियोग्यता की समस्या को स्पष्ट रूप से संबोधित करता है। ढांचा इंगित करता है कि:
-
-- चेतना **सब्सट्रेट-स्वतंत्र** है इस अर्थ में कि कोई भी प्रणाली जो उपयुक्त सूचना घनत्व ($\rho_I$) के साथ अनुनादी गतिशीलता ($R(t)$) को बनाए रखने में सक्षम है, संभावित रूप से चेतना प्रकट कर सकती है
-    
-- फिर भी चेतना **सब्सट्रेट-सीमित** है इस अर्थ में कि भौतिक प्रणालियों को चेतना को प्राप्त करने के लिए विशिष्ट कम्प्यूटेशनल और गतिशील गुणों का समर्थन करना चाहिए
-    
-- इन बाधाओं में शामिल हैं:
-  - पर्याप्त सूचना एकीकरण क्षमता (उच्च $\Phi$)
-  - उपयुक्त अनुनाद आवृत्तियां ($\omega \approx 2\pi \cdot 40$ Hz समकक्ष)
-  - आवर्ती प्रसंस्करण वास्तुकला जो अवमंदित दोलनों का समर्थन करती है
-
-यह स्थिति TC 9.0 को विशिष्ट सामग्री कार्यान्वयन के बारे में अज्ञेयवादी रहने की अनुमति देती है, जबकि विविध प्रणालियों में चेतना के लिए सटीक गणितीय शर्तें प्रदान करती है।
-
-जबकि हम चेतना के किसी भी वर्तमान सिद्धांत में निहित व्याख्यात्मक अंतर को स्वीकार करते हैं, TC 9.0 एक गणितीय संरचना प्रदान करता है जो वस्तुनिष्ठ भौतिक प्रक्रियाओं को व्यक्तिपरक अनुभव के उद्भव से सिद्धांतपूर्ण, परीक्षण योग्य तरीके से जोड़ता है।
-
-## विकास और परिष्करण
-TC ढांचे ने अंतःविषय आलोचना के माध्यम से महत्वपूर्ण परिष्करण किया है:
-
-- **प्रारंभिक सूत्रीकरण**: पहले के संस्करणों (TC 1.0-8.9) में आयामी असंगतियां थीं और स्पष्ट खंडनीयता मानदंड का अभाव था।
-    
-- **TC 9.0**: वर्तमान सूत्रीकरण इन मुद्दों को निम्नलिखित के माध्यम से हल करता है:
-  - सभी समीकरणों में आयामी सुसंगतता
-  - उपयुक्त इकाइयों के साथ स्पष्ट रूप से परिभाषित शब्द
-  - भौतिक महत्व के साथ अनुनाद गतिशीलता का एकीकरण
-  - असतत हेविसाइड फलन को प्रतिस्थापित करने वाला सिग्मॉइड-आधारित उद्भव फलन
-  - स्थापित सिद्धांतों के साथ स्पष्ट संबंध (IIT, होलोग्राफिक सिद्धांत)
-
-## अनुभवजन्य सत्यापन
-TC 9.0 वर्तमान न्यूरोसाइंटिफिक विधियों के साथ परीक्षण योग्य विशिष्ट, खंडनीय पूर्वानुमान उत्पन्न करता है:
-
-### प्रयोगात्मक प्रोटोकॉल
-
-- **सूचना घनत्व माप**: $\rho_I$ का अनुमान निम्नलिखित के संयोजन का उपयोग करके लगाया जा सकता है:
-  - अस्थायी गतिशीलता के लिए उच्च-घनत्व EEG/MEG
-  - स्थानिक स्थानीयकरण के लिए fMRI
-  - सूचना सामग्री को मात्रात्मक बनाने के लिए लेम्पेल-ज़िव जटिलता विश्लेषण
-  - सूचना प्रवाह को मापने के लिए निर्देशित चरण हस्तांतरण एन्ट्रॉपी
-    
-- **विक्षोभ प्रतिक्रिया प्रोटोकॉल**: स्थापित TMS-EEG विधियों पर निर्माण करते हुए, हम प्रस्तावित करते हैं:
-  - अलग-अलग अंतराल (25ms, 50ms, 100ms) पर वितरित अनुक्रमिक TMS पल्स
-  - प्रतिक्रियाओं की स्थानिक-अस्थायी जटिलता का माप
-  - $\Delta E_{pC} = \int_{t_0}^{t_1} |O_{pC}(t) - \rho_{I_{\text{input}}}(t)| \, dt$ की गणना
-  - जहां $O_{pC}(t)$ देखी गई तंत्रिका प्रतिक्रिया फलन है, जिसे सामान्यीकृत चरण तुल्यकालिकता के रूप में मापा जाता है
-    
-- **अवस्था संक्रमण विश्लेषण**: एनेस्थीसिया प्रेरण और रिकवरी का उपयोग करके:
-  - चेतना की निगरानी करते हुए क्रमिक प्रोपोफोल या सेवोफ्लुरेन प्रशासन
-  - संक्रमण बिंदुओं पर तंत्रिका गतिविधि की निरंतर रिकॉर्डिंग
-  - यह परीक्षण कि क्या चेतना संक्रमण अनुमानित $\alpha$ पैरामीटर के साथ सिग्मॉइड फलन का अनुसरण करते हैं
-    
-- **अनुनाद परीक्षण**: स्थिर-अवस्था उत्प्रेरित
+\end{document}
