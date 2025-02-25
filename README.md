@@ -77,7 +77,7 @@ As Carl Sagan once said, "We are a way for the cosmos to know itself." TC 9.0 su
 
 ## How to Engage
 
-- **Read**: Start with the latest paper (`tc9_latest.pdf`) for the most refined version of the theory
+- **Read**: Start with the latest paper (`latest/tc9_latest.pdf`) for the most refined version of the theory
 - **Discuss**: Open an issue to share your thoughts or ask questions about the framework
 - **Extend**: Fork this repository to build upon the ideas or apply them in new contexts
 - **Share**: Pass along the concepts to spark new conversations about consciousness and AI
