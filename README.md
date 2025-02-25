@@ -60,8 +60,8 @@ As Engelbart envisioned computers as tools to augment human intellect, TC 9.0 su
 
 ## What's Inside?
 
-- **PDF Folder**: Contains all papers in PDF format for easy reading
-  - **Paper (Latest Version)**: `tc9_latest.pdf` - The most current, AI-simulated peer-reviewed version with mathematical and empirical refinements
+- **PDF and LATEST FolderS**: Contains all papers in PDF format for easy reading
+  - **Paper (Latest Version)**: `latest/tc9_latest.pdf` - The most current, AI-simulated peer-reviewed version with mathematical and empirical refinements
   - **Original Paper**: `tc9_original.pdf` - The initial formulation developed with Grok 3
 - **LaTeX Source**: `tc9_latest.tex` - Source code for the current paper
 - **Translations**: Folder containing translations in various languages
