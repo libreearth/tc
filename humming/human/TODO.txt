@@ -1,0 +1,1 @@
+lets createe a CHANGELOG.md artifact as changelog/journal it should describe what we did humabs ai today. and how paper evolved. but BEFORE lets add a EXPLORATION.md describing how AI open scientific exploration in an updated scientific method closer to software building discovery
